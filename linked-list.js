@@ -182,16 +182,61 @@ function isEmpty(list){
   }
 }
 
+function findPrevious(list, item) {
+  let currentNode = list.head;
+  let previousNode = list.head;
+  while (currentNode !== null && currentNode.value !== item) {
+    previousNode = currentNode;
+    currentNode = currentNode.next;
+  } 
+  if (currentNode === null) {
+    console.log('item not in list');
+    return; 
+  }
+  console.log(previousNode.value);
+  return;
+}
+
+function findLast(list) {
+  if (!list.head) {
+    console.log('List is empty');
+    return null;
+  }
+  let currentNode = list.head;
+  while (currentNode.next !== null) {
+    currentNode = currentNode.next;
+  }
+  console.log(currentNode.value);
+  return currentNode.value; 
+}
+
+
+function WhatDoesThisProgramDo(lst){
+  let current = lst.head;
+  while(current !== null){
+    let newNode = current;
+    while (newNode.next !== null) {
+      if (newNode.next.value === current.value) {
+        newNode.next = newNode.next.next;
+      }
+      else{
+        newNode = newNode.next;
+      }
+    }
+    current = current.next;
+  }
+}
 
 function main() {
   const SLL = new LinkedList();
 
-  SLL.insertFirst('Apollo');
-  SLL.insertLast('Boomer');
-  SLL.insertLast('Helo');
-  SLL.insertLast('Husker');
-  SLL.insertLast('Starbuck');
-  SLL.insertLast('Tauhida');
+    // SLL.insertFirst('Apollo');
+    // SLL.insertLast('Boomer');
+    // SLL.insertLast('Helo');
+    // SLL.insertLast('Husker');
+    // SLL.insertLast('Starbuck');
+    // SLL.insertLast('Tauhida');
+    // SLL.insertLast('Tauhida');
   //   //   SLL.remove('squirrel');
   //   // SLL.insertBefore('works', 'Boomer');
 
@@ -199,11 +244,15 @@ function main() {
 
   //   SLL.insertAt('works', 10);
   //   console.log(SLL.find('works'));
-  
-  display(SLL);
-//   size(SLL);
-//   isEmpty(SLL);
+//   WhatDoesThisProgramDo(SLL);
+//     display(SLL);
+  //   size(SLL);
+  //   isEmpty(SLL);
+  //   findPrevious(SLL, 'Tauhida');
+  //   findLast(SLL);
   return; 
 }
 
 main();
+
+module.exports = {LinkedList, display};
