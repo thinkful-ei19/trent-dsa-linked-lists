@@ -47,7 +47,20 @@ class LinkedList {
     if (!this.head) {
       return null;
     }
-    
+    if (this.head.value === item) {
+      this.head = this.head.next;
+      return;
+    }
+    let currentNode = this.head;
+    let previousNode = this.head;
+    while ((currentNode !== null) && (currentNode.value !== item)) {
+      previousNode = currentNode;
+      currentNode = currentNode.next;
+    }
+    if(currentNode === null){
+      console.log('Item not found');
+      return;
+    }
+    previousNode.next = currentNode.next;
   }
-
 }
