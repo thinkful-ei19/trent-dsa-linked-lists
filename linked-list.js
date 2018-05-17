@@ -122,6 +122,64 @@ class LinkedList {
     }
     console.log('Item you are trying to insert after is not found');
   }
+
+  insertAt(item, position) {
+    if (!this.head) {
+      return null;
+    }
+    if (position === 1) {
+      this.insertFirst(item);
+      return;
+    }
+    let i = 0;
+    let currentNode = this.head;
+    let previousNode = this.head;
+    while ((i < (position - 1)) && (currentNode !== null)) {
+      previousNode = currentNode;
+      currentNode = currentNode.next;
+      i++;
+    }
+    if (currentNode === null) {
+      console.log('Position exceeds the length of the list');
+      return;
+    }
+    previousNode.next = new _Node(item, currentNode);
+  }
+}
+
+function display(list) {
+  if (!list.head) {
+    console.log('List is empty');
+    return;
+  }
+  let currentNode = list.head;
+  while (currentNode !== null) {
+    console.log(currentNode.value);
+    currentNode = currentNode.next;
+  } 
+  return;
+}
+
+function size(list) {
+  let currentNode = list.head;
+  let result = 0;
+  while (currentNode !== null) {
+    result++;
+    currentNode = currentNode.next;
+  } 
+  console.log(result);
+  return result;
+}
+
+function isEmpty(list){
+  let currentNode = list.head;
+  if (currentNode) {
+    console.log('List is not empty');
+    return false;
+  } else {
+    console.log('List is empty');
+    return true;
+  }
 }
 
 
@@ -134,14 +192,18 @@ function main() {
   SLL.insertLast('Husker');
   SLL.insertLast('Starbuck');
   SLL.insertLast('Tauhida');
-  //   SLL.remove('squirrel');
-//   SLL.insertBefore('works', 'Apollo');
+  //   //   SLL.remove('squirrel');
+  //   // SLL.insertBefore('works', 'Boomer');
 
-  SLL.insertAfter('works', 'Huskers');    
-    console.log(SLL.find('Husker'));
+  //   SLL.insertAfter('works', 'Husker');  
+
+  //   SLL.insertAt('works', 10);
+  //   console.log(SLL.find('works'));
   
-
-  return console.log(SLL);
+  display(SLL);
+//   size(SLL);
+//   isEmpty(SLL);
+  return; 
 }
 
 main();
